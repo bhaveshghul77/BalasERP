@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Add Update User";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light shadow">
+    <div class="page-header-content d-lg-flex border-top">
+        <div class="d-flex">
+            <div class="breadcrumb py-2">
+                <a href="home" class="breadcrumb-item"><i class="ph-house"></i></a>
+                <a href="user" class="breadcrumb-item">Users</a>
+
+                <span class="breadcrumb-item active">Add Update User</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Content area -->
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Add User</h5>
+        </div>
+
+        <div class="card-body border-top">
+            <form action="#">
+                <div class="mb-3">
+                    <label class="form-label">Name:</label>
+                    <input type="text" class="form-control" placeholder="Eugene Kopyov">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password:</label>
+                    <input type="password" class="form-control" placeholder="Your strong password">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Your state:</label>
+                    <select class="form-control form-control-select2">
+                        <option value="AK">Alaska</option>
+                        <option value="HI">Hawaii</option>
+                    </select>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Submit <i class="ph-paper-plane-tilt ms-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /content area -->

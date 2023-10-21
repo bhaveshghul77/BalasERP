@@ -14,7 +14,7 @@ namespace InfoShark.Services
         }
 
 
-        public Task<Response<T>> AddEdit<T>(object obj, string module, string action)
+        public Task<Response<T>> AddUpdate<T>(object obj, string module, string action)
         {
             throw new NotImplementedException();
         }

@@ -15,7 +15,7 @@ namespace InfoShark.Repositories
             this.connectionString = connectionString;
         }
 
-        public Task<T?> AddEdit<T>(object obj, string module, string action)
+        public Task<T?> AddUpdate<T>(object obj, string module, string action)
         {
             throw new NotImplementedException();
         }

@@ -18,7 +18,11 @@
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
+	<script src="~/assets/js/jquery/jquery.min.js"></script>
+	<script src="~/assets/js/vendor/forms/selects/select2.min.js"></script>
+
 	<script src="~/assets/js/app.js"></script>
+    <script src="~/assets/demo/pages/form_layouts.js"></script>
 	<!-- /theme JS files -->
 </head>
 
@@ -173,7 +177,8 @@
 		</div>
 	</div>
 	<!-- /demo config -->
-	@await RenderSectionAsync("Scripts", required: false)
+
+	@* @await RenderSectionAsync("Scripts", required: false) *@
 
 </body>
 </html>

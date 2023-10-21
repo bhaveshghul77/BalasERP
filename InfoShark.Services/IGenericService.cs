@@ -4,7 +4,7 @@ namespace InfoShark.Services
 {
     public interface IGenericService
     {
-        Task<Response<T>> AddEdit<T>(object obj, string module, string action = "AddEdit");
+        Task<Response<T>> AddUpdate<T>(object obj, string module, string action = "AddUpdate");
 
         Task<Response<T>> Delete<T>(object obj, string module, string action = "Delete");
 
