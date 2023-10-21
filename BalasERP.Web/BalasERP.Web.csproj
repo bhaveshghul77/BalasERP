@@ -7,14 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\lib\" />
+    <ProjectReference Include="..\InfoShark.Services\InfoShark.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InfoShark.Services\InfoShark.Services.csproj" />
+    <Folder Include="wwwroot\assets\js\vendor\" />
   </ItemGroup>
 
 </Project>

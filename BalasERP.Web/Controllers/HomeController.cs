@@ -14,7 +14,7 @@ namespace BalasERP.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            await this.iGenericService.GetFirstorDefault<Object>(null, "");
+            //await this.iGenericService.GetFirstorDefault<Object>(null, "");
             return View();
         }
     }
