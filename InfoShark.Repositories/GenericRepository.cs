@@ -1,7 +1,4 @@
 ﻿using Dapper;
-using InfoShark.Helper;
-using InfoShark.Helper.Model;
-using Microsoft.Extensions.Options;
 using System.Data;
 using System.Data.SqlClient;
 

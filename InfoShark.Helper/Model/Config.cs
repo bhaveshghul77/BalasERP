@@ -1,6 +1,6 @@
-﻿namespace InfoShark.Helper.Model
+﻿namespace InfoShark.Helper
 {
-    public class ConfigModel
+    public class Config
     {
         public string? ConnectionString { get; set; }
     }

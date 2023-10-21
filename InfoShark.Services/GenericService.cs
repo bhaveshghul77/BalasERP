@@ -1,5 +1,4 @@
 ﻿using InfoShark.Helper;
-using InfoShark.Helper.Model;
 using InfoShark.Repositories;
 using Microsoft.Extensions.Options;
 
@@ -9,7 +8,7 @@ namespace InfoShark.Services
     {
         private readonly GenericRepository genericRepository;
 
-        public GenericService(IOptions<ConfigModel>? config)
+        public GenericService(IOptions<Config>? config)
         {
             this.genericRepository = new GenericRepository(config?.Value?.ConnectionString);
         }

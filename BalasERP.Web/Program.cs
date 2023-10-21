@@ -1,4 +1,4 @@
-using InfoShark.Helper.Model;
+using InfoShark.Helper;
 using InfoShark.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.Configure<ConfigModel>(options =>
+builder.Services.Configure<Config>(options =>
 {
     options.ConnectionString = builder.Configuration.GetConnectionString("BalasConnectionString");
 });
