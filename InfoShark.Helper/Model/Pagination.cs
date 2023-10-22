@@ -1,4 +1,4 @@
-﻿namespace IBookedOnline.Domain
+﻿namespace InfoShark.Helper
 {
     public class Pagination
     {

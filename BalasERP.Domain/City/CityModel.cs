@@ -1,4 +1,4 @@
-﻿namespace BalasERP.Domain.City
+﻿namespace BalasERP.Domain
 {
     public class CityModel
     {

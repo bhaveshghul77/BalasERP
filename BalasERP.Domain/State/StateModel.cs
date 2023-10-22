@@ -1,4 +1,4 @@
-﻿namespace BalasERP.Domain.State
+﻿namespace BalasERP.Domain
 {
     public class StateModel
     {

@@ -1,4 +1,4 @@
-﻿namespace BalasERP.Domain.UserGroup
+﻿namespace BalasERP.Domain
 {
     public class UserGroupModel
     {

@@ -1,7 +1,4 @@
 ﻿using BalasERP.Domain;
-using BalasERP.Domain.City;
-using BalasERP.Domain.UserGroup;
-using IBookedOnline.Domain;
 using InfoShark.Helper;
 using InfoShark.Services;
 using Microsoft.AspNetCore.Mvc;

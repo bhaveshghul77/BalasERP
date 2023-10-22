@@ -1,0 +1,89 @@
+﻿@model BalasERP.Domain.TypeofBackdataModel
+
+@{
+    ViewData["Title"] = "Add Update TypeofBackdata";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light shadow">
+    <div class="page-header-content d-lg-flex border-top">
+        <div class="d-flex">
+            <div class="breadcrumb py-2">
+                <a asp-action="index" asp-controller="home" class="breadcrumb-item"><i class="ph-house"></i></a>
+                <a asp-action="index" asp-controller="typeofbackdata" class="breadcrumb-item">TypeofBackdata</a>
+
+                <span class="breadcrumb-item active">Add Update TypeofBackdata</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Add TypeofBackdata</h5>
+        </div>
+
+        <div class="card-body border-top">
+            <form id="typeofbackdata" asp-controller="typeofbackdata" asp-action="addupdate" role="form" method="post">
+                <div class="row">
+                    <div class="col-lg-12" hidden>
+                        <div class="mb-3">
+                            <label class="form-label">Id:</label>
+                            <input type="text" class="form-control" placeholder="Id" asp-for="Id">
+                            <span asp-validation-for="Id"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">TypeofBackdata:</label>
+                            <input type="text" class="form-control" placeholder="TypeofBackdata" asp-for="TypeofBackdata">
+                            <span asp-validation-for="TypeofBackdata"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Submit <i class="ph-paper-plane-tilt ms-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /content area -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#typeofbackdata").submit(async function (e) {
+            e.preventDefault();
+
+            if ($("#typeofbackdata").valid()) {
+
+                var obj = {
+                    ['type']: $(this).attr("method"),
+                    ['url']: $(this).attr("action"),
+                    ['data']: $('#typeofbackdata').serialize(),
+                }
+
+                var result = await AjaxCall(obj);
+                if (result.status) {
+                    console.log('This was success');
+                    window.location.href = '@Url.Action("index","typeofbackdata")';
+                }
+                else {
+                    console.log('This was failure');
+                }
+            }
+            else
+                return false;
+        });
+    });
+</script>
