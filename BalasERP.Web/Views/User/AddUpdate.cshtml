@@ -1,4 +1,6 @@
-﻿@{
+﻿@model BalasERP.Domain.UserModel
+
+@{
     ViewData["Title"] = "Add Update User";
 }
 
@@ -7,8 +9,8 @@
     <div class="page-header-content d-lg-flex border-top">
         <div class="d-flex">
             <div class="breadcrumb py-2">
-                <a href="home" class="breadcrumb-item"><i class="ph-house"></i></a>
-                <a href="user" class="breadcrumb-item">Users</a>
+                <a asp-action="index" asp-controller="home" class="breadcrumb-item"><i class="ph-house"></i></a>
+                <a asp-action="index" asp-controller="user" class="breadcrumb-item">Users</a>
 
                 <span class="breadcrumb-item active">Add Update User</span>
             </div>
@@ -16,7 +18,6 @@
     </div>
 </div>
 <!-- /page header -->
-
 <!-- Content area -->
 <div class="content">
     <div class="card">
@@ -25,23 +26,122 @@
         </div>
 
         <div class="card-body border-top">
-            <form action="#">
-                <div class="mb-3">
-                    <label class="form-label">Name:</label>
-                    <input type="text" class="form-control" placeholder="Eugene Kopyov">
+            <form id="user" asp-controller="user" asp-action="addupdate" role="form" method="post">
+                <div class="row">
+                    <div class="col-lg-12" hidden>
+                        <div class="mb-3">
+                            <label class="form-label">Id:</label>
+                            <input type="text" class="form-control" placeholder="Id" asp-for="Id">
+                            <span asp-validation-for="Id"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Firstname:</label>
+                            <input type="text" class="form-control" placeholder="Firstname" asp-for="FirstName">
+                            <span asp-validation-for="FirstName"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Lastname:</label>
+                            <input type="text" class="form-control" placeholder="LastName" asp-for="LastName">
+                            <span asp-validation-for="LastName"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Password:</label>
-                    <input type="password" class="form-control" placeholder="Your strong password">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Address:</label>
+                            <input type="text" class="form-control" placeholder="Address" asp-for="Address">
+                            <span asp-validation-for="Address"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Description:</label>
+                            <input type="text" class="form-control" placeholder="Description" asp-for="Description">
+                            <span asp-validation-for="Description"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Your state:</label>
-                    <select class="form-control form-control-select2">
-                        <option value="AK">Alaska</option>
-                        <option value="HI">Hawaii</option>
-                    </select>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">State:</label>
+                            <select class="form-control form-control-select2" asp-for="StateId" asp-items="@(new SelectList(ViewBag.State,"Id","StateName"))">
+                                <option value="">Select State</option>
+                            </select>
+                            <span asp-validation-for="StateId"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">City:</label>
+                            <select class="form-control form-control-select2" asp-for="CityId">
+                                <option value="">Select City</option>
+                            </select>
+                            <span asp-validation-for="CityId"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Zip Code:</label>
+                            <input type="tel" class="form-control" placeholder="Zip Code" asp-for="ZipCode">
+                            <span asp-validation-for="ZipCode"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Mobile No:</label>
+                            <input type="tel" class="form-control" placeholder="Mobile No" asp-for="MobileNo">
+                            <span asp-validation-for="MobileNo"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Username:</label>
+                            <input type="text" class="form-control" placeholder="Username" asp-for="UserName">
+                            <span asp-validation-for="UserName"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Password:</label>
+                            <input type="text" class="form-control" placeholder="Password" asp-for="Password">
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Designation:</label>
+                            <input type="text" class="form-control" placeholder="Designation" asp-for="Designation">
+                            <span asp-validation-for="Designation"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Group:</label>
+                            <select class="form-control form-control-select2" asp-for="GroupId" asp-items="@(new SelectList(ViewBag.UserGroup,"Id","GroupName"))">
+                                <option value="">Select User Group</option>
+                            </select>
+                            <span asp-validation-for="GroupId"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="text-end">
@@ -52,3 +152,68 @@
     </div>
 </div>
 <!-- /content area -->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#user").submit(async function (e) {
+            e.preventDefault();
+
+            if ($("#user").valid()) {
+
+                var obj = {
+                    ['type']: $(this).attr("method"),
+                    ['url']: $(this).attr("action"),
+                    ['data']: $('#user').serialize(),
+                }
+
+                var result = await AjaxCall(obj);
+                if (result.status) {
+                    console.log('This was success');
+                    window.location.href = '@Url.Action("index","user")';
+                }
+                else {
+                    console.log('This was failure');
+                }
+            }
+            else
+                return false;
+        });
+    });
+
+    $('#StateId').on('change', async function () {
+
+        var StateId = $(this).val() == '' ? 0 : $(this).val();
+
+        var obj = {
+            ['type']: 'Post',
+            ['url']: '@Url.Action("getcitylistbystateid","user")',
+            ['data']: {
+                'stateId': StateId,
+            },
+            ['processData']: true,
+        }
+
+        var result = await AjaxCall(obj);
+        if (result.status) {
+
+            $('#CityId').find('option').remove().end().append('<option value="">Select City</option>').val('');
+
+            $.each(result.list, function (key, value) {
+                $('#CityId').append($("<option></option>").attr("value", value.id).text(value.cityName));
+            });
+
+            $('#CityId').val('@Model.CityId' == '0' ? '' : '@Model.CityId');
+        }
+        else {
+            $('#CityId').find('option').remove().end().append('<option value="">Select City</option>').val('');
+            console.log('This was failure');
+        }
+    }).change();
+
+</script>

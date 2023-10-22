@@ -4,12 +4,16 @@ namespace InfoShark.Services
 {
     public interface IGenericService
     {
-        Task<Response<T>> AddUpdate<T>(object obj, string module, string action = "AddUpdate");
+        Task<T?> AddUpdate<T>(object obj, string module, string action = "AddEdit");
 
-        Task<Response<T>> Delete<T>(object obj, string module, string action = "Delete");
+        Task<T?> Delete<T>(object obj, string module, string action = "Delete");
 
-        Task<Response<T>> GetFirstorDefault<T>(object obj, string module,string action = "FirstorDefault");
+        Task<T?> GetFirstorDefault<T>(object obj, string module,string action = "FirstorDefault");
 
-        Task<Response<T>> GetList<T>(object obj, string module, string action = "GetList");
+        Task<IEnumerable<T?>> GetList<T>(string module, string action = "GetList");
+
+        Task<IEnumerable<T?>> GetListWithParam<T>(object obj, string module, string action = "GetListWithParam");
+
+        Task<Response<T?>> GetListofData<T>(object obj, string module, string action = "GetListofData");
     }
 }

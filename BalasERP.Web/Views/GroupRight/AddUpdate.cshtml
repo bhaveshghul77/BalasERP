@@ -1,0 +1,102 @@
+﻿@model BalasERP.Domain.GroupRightModel
+
+@{
+    ViewData["Title"] = "Add Update Group Right";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light shadow">
+    <div class="page-header-content d-lg-flex border-top">
+        <div class="d-flex">
+            <div class="breadcrumb py-2">
+                <a asp-action="index" asp-controller="home" class="breadcrumb-item"><i class="ph-house"></i></a>
+                <a asp-action="index" asp-controller="GroupRight" class="breadcrumb-item">Group Rights</a>
+
+                <span class="breadcrumb-item active">Add Update Group Right</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Add Group Right</h5>
+        </div>
+
+        <div class="card-body border-top">
+            <form id="groupright" asp-controller="groupright" asp-action="addupdate" role="form" method="post">
+                <div class="row">
+                    <div class="col-lg-12" hidden>
+                        <div class="mb-3">
+                            <label class="form-label">Id:</label>
+                            <input type="text" class="form-control" placeholder="Id" asp-for="Id">
+                            <span asp-validation-for="Id"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Group:</label>
+                            <select class="form-control form-control-select2" asp-for="GroupId" asp-items="@(new SelectList(ViewBag.UserGroup,"Id","GroupName"))">
+                                <option value="">Select Group</option>
+                            </select>
+                            <span asp-validation-for="GroupId"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Menu:</label>
+                            <select class="form-control form-control-select2" asp-for="MenuId" asp-items="@(new SelectList(ViewBag.UserMenu,"Id","MenuName"))">
+                                <option value="">Select Menu</option>
+                            </select>
+                            <span asp-validation-for="MenuId"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Submit <i class="ph-paper-plane-tilt ms-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /content area -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#groupright").submit(async function (e) {
+            e.preventDefault();
+
+            if ($("#groupright").valid()) {
+
+                var obj = {
+                    ['type']: $(this).attr("method"),
+                    ['url']: $(this).attr("action"),
+                    ['data']: $('#groupright').serialize(),
+                }
+
+                var result = await AjaxCall(obj);
+                if (result.status) {
+                    console.log('This was success');
+                    window.location.href = '@Url.Action("index","groupright")';
+                }
+                else {
+                    console.log('This was failure');
+                }
+            }
+            else
+                return false;
+        });
+    });
+
+</script>

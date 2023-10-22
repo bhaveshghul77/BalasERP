@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BalasERP.Domain\BalasERP.Domain.csproj" />
+    <ProjectReference Include="..\InfoShark.Helper\InfoShark.Helper.csproj" />
     <ProjectReference Include="..\InfoShark.Services\InfoShark.Services.csproj" />
   </ItemGroup>
 

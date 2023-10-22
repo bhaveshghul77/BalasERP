@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Users";
+    ViewData["Title"] = "GroupRights";
 }
 
 <!-- Page header -->
@@ -8,7 +8,7 @@
         <div class="d-flex">
             <div class="breadcrumb py-2">
                 <a href="home" class="breadcrumb-item"><i class="ph-house"></i></a>
-                <span class="breadcrumb-item active">Users</span>
+                <span class="breadcrumb-item active">GroupRights</span>
             </div>
         </div>
     </div>
@@ -18,7 +18,7 @@
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Users</h5>
+            <h5 class="mb-0">GroupRights</h5>
         </div>
 
         <table id="default-ajax-datatable" class="table datatable-html">
@@ -26,11 +26,9 @@
                 <tr>
                     <th>Id</th>
                     <th>Row No</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Mobile No</th>
-                    <th>Designation</th>
-                    <th class="text-center">Actions</th>
+                    <th>Group Name</th>
+                    <th>Menu Name</th>
+                    @* <th class="text-center">Actions</th> *@
                 </tr>
             </thead>
         </table>
@@ -52,7 +50,7 @@
             searching: true,
             responsive: true,
             ajax: {
-                url: "user/getlistofdata",
+                url: "groupright/getlistofdata",
                 type: "POST",
                 datatype: "jason",
                 dataSrc: function (json) {
@@ -61,40 +59,39 @@
             },
             columns: [
                 { data: "id", name: "id", visible: false },
-                { data: "rowNo", name: "rowNo", class: "text-center", orderable: false},
-                { data: "firstName", name: "firstname" },
-                { data: "lastName", name: "Lastname" },
-                { data: "mobileNo", name: "mobileNo" },
-                { data: "designation", name: "designation" },
-                { data: null, name: "action", class: "text-center", orderable: false},
+                { data: "rowNo", name: "rowNo", class: "text-center", orderable: false },
+                { data: "groupName", name: "groupName" },
+                { data: "menuName", name: "menuName" },
+                // { data: null, name: "action", class: "text-center", orderable: false },
             ],
-            columnDefs: [{
-                targets: [6],
-                render: function (data, type, row, meta) {
-                    return '<div class="d-inline-flex">'+
-                    '<div class="dropdown">'+
-                        '<a href="#" class="text-body" data-bs-toggle="dropdown">'+
-                            '<i class="ph-list"></i>'+
-                        '</a>'+
-                        '<div class="dropdown-menu dropdown-menu-end">'+
-                        '<a href="user/getbyid/' + row['id'] + '" class="dropdown-item"><i class="ph-note-pencil me-2"></i>Edit</a>' +
-                        '<a href="#" onclick="Delete(' + row['id'] + ')" class="dropdown-item"><i class="ph-x-circle me-2"></i>Delete</a>' +
-                        '</div>'+
-                    '</div>'+
-                '</div>';
-                }
-            }
+            columnDefs: [
+            // {
+            //     targets: [4],
+            //     render: function (data, type, row, meta) {
+            //         return '<div class="d-inline-flex">' +
+            //             '<div class="dropdown">' +
+            //             '<a href="#" class="text-body" data-bs-toggle="dropdown">' +
+            //             '<i class="ph-list"></i>' +
+            //             '</a>' +
+            //             '<div class="dropdown-menu dropdown-menu-end">' +
+            //             '<a href="groupright/getbyid/' + row['id'] + '" class="dropdown-item"><i class="ph-note-pencil me-2"></i>Edit</a>' +
+            //             '<a href="#" onclick="Delete(' + row['id'] + ')" class="dropdown-item"><i class="ph-x-circle me-2"></i>Delete</a>' +
+            //             '</div>' +
+            //             '</div>' +
+            //             '</div>';
+            //     }
+            // }
             ],
             order: [[0, 'desc']],
         });
     };
 
-    async function Delete(userId) {
+    async function Delete(grouprightId) {
         var obj = {
             ['type']: 'Post',
-            ['url']: 'user/delete',
+            ['url']: 'groupright/delete',
             ['data']: {
-                'id': userId,
+                'id': grouprightId,
             },
             ['processData']: true,
         }

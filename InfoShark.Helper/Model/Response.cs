@@ -6,7 +6,7 @@ namespace InfoShark.Helper
     public class Response<T>
     {
         [DataMember(Name = "status")]
-        public bool Status { get; set; } = false;
+        public bool Status { get; set; } = true;
 
         [DataMember(Name = "message")]
         public string Message { get; set; } = string.Empty;

@@ -20,10 +20,16 @@
 	<!-- Theme JS files -->
 	<script src="~/assets/js/jquery/jquery.min.js"></script>
 	<script src="~/assets/js/vendor/forms/selects/select2.min.js"></script>
+	<script src="~/assets/js/vendor/tables/datatables/datatables.min.js"></script>
 
 	<script src="~/assets/js/app.js"></script>
     <script src="~/assets/demo/pages/form_layouts.js"></script>
+	<script src="~/assets/demo/pages/datatables_data_sources.js"></script>
 	<!-- /theme JS files -->
+
+	<!-- Devloper JS files -->
+    <script src="~/js/devloper/custom-js-dev.js"></script>
+	<!-- /Devloper JS files -->
 </head>
 
 <body>
@@ -178,7 +184,7 @@
 	</div>
 	<!-- /demo config -->
 
-	@* @await RenderSectionAsync("Scripts", required: false) *@
+	@await RenderSectionAsync("Scripts", required: false)
 
 </body>
 </html>
