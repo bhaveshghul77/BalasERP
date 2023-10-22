@@ -66,6 +66,17 @@
                     return "[dbo].[CURD_GroupRightsMaster]";
                 }
             }
+            else if (module.Equals("UserRight"))
+            {
+                if (action.Equals("GetListofData"))
+                {
+                    return "[dbo].[GetUserRightsMasterList]";
+                }
+                else
+                {
+                    return "[dbo].[CURD_UserRightsMaster]";
+                }
+            }
 
             return string.Empty;
         }
