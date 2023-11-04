@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BalasERP.Web.Controllers
 {
-    public class DataInputController : Controller
+    public class DataInputController : BaseController
     {
         private readonly IGenericService iGenericService;
         private string module = "DataInput";

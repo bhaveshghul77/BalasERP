@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BalasERP.Web.Controllers
 {
-    public class GroupRightController : Controller
+    public class GroupRightController : BaseController
     {
         private readonly IGenericService iGenericService;
         private string module = "GroupRight";

@@ -19,6 +19,10 @@
                     return "[dbo].[CURD_UserMaster]";
                 }
             }
+            else if (module.Equals("Login"))
+            {
+                return "[dbo].[ValidateUserbyUsernameAndPassword]";
+            }
 
             else if (module.Equals("State"))
             {

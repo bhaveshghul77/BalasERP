@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BalasERP.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly IGenericService iGenericService;
 

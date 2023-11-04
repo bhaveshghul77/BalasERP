@@ -6,7 +6,7 @@ using Constants = InfoShark.Helper.Constants;
 
 namespace BalasERP.Web.Controllers
 {
-    public class MillimetreController : Controller
+    public class MillimetreController : BaseController
     {
         private readonly IGenericService iGenericService;
         private string module = "Millimetre";

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BalasERP.Web.Controllers
 {
-    public class TypeofHardwareController : Controller
+    public class TypeofHardwareController : BaseController
     {
         private readonly IGenericService iGenericService;
         private string module = "TypeofHardware";

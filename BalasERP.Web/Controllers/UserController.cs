@@ -2,11 +2,12 @@
 using InfoShark.Helper;
 using InfoShark.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 using Constants = InfoShark.Helper.Constants;
 
 namespace BalasERP.Web.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IGenericService iGenericService;
         private string module = "User";
@@ -39,6 +40,7 @@ namespace BalasERP.Web.Controllers
             {
                 var response = new Response<UserModel>();
 
+                model.Password = Library.Encrypt(model.Password);
                 UserModel? repo = await this.iGenericService.AddUpdate<UserModel>(model, module);
 
                 if (repo?.ResponseCode > 0)
@@ -74,6 +76,7 @@ namespace BalasERP.Web.Controllers
                 ViewBag.State = await iGenericService.GetList<StateModel>("State");
                 ViewBag.UserGroup = await iGenericService.GetList<UserGroupModel>("Group");
 
+                repo.Password = Library.Decrypt(repo.Password);
                 return View("AddUpdate", repo);
             }
             else

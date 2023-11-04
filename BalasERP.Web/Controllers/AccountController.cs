@@ -2,8 +2,8 @@
 
 namespace BalasERP.Web.Controllers
 {
-	public class AccountController : Controller
-	{
+	public class AccountController : BaseController
+    {
 		public IActionResult Index()
 		{
 			return View();
@@ -13,5 +13,5 @@ namespace BalasERP.Web.Controllers
 		{
 			return View();
 		}
-	}
+    }
 }

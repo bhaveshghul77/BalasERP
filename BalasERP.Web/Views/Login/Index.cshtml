@@ -1,5 +1,8 @@
-﻿@{
+﻿@model BalasERP.Domain.LoginDTO
+
+@{
     Layout = "_AccountLayout";
+    ViewData["Title"] = "Login";
 }
 
 <!-- Main content -->
@@ -12,7 +15,7 @@
         <div class="content d-flex justify-content-center align-items-center">
 
             <!-- Login form -->
-            <form class="login-form" action="index.html">
+            <form id="login" class="login-form" asp-action="userlogin" asp-controller="login" method="post">
                 <div class="card mb-0">
                     <div class="card-body">
                         <div class="text-center mb-3">
@@ -26,20 +29,22 @@
                         <div class="mb-3">
                             <label class="form-label">Username</label>
                             <div class="form-control-feedback form-control-feedback-start">
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" class="form-control" asp-for="UserName" placeholder="Username">
                                 <div class="form-control-feedback-icon">
                                     <i class="ph-user-circle text-muted"></i>
                                 </div>
+                                <span asp-validation-for="UserName"></span>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Password</label>
                             <div class="form-control-feedback form-control-feedback-start">
-                                <input type="password" class="form-control" placeholder="•••••••••••">
+                                <input type="password" class="form-control" asp-for="Password" placeholder="•••••••••••">
                                 <div class="form-control-feedback-icon">
                                     <i class="ph-lock text-muted"></i>
                                 </div>
+                                <span asp-validation-for="Password"></span>
                             </div>
                         </div>
 
@@ -63,3 +68,38 @@
 
 </div>
 <!-- /main content -->
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#login").submit(async function (e) {
+            e.preventDefault();
+
+            if ($("#login").valid()) {
+
+                var obj = {
+                    ['type']: $(this).attr("method"),
+                    ['url']: $(this).attr("action"),
+                    ['data']: $('#login').serialize(),
+                }
+
+                var result = await AjaxCall(obj);
+                if (result.status) {
+                    console.log('This was success');
+                    window.location.href = '@Url.Action("index","home")';
+                }
+                else {
+                    console.log('This was failure');
+                }
+            }
+            else
+                return false;
+        });
+    });
+
+</script>

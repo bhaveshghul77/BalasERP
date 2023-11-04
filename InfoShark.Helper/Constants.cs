@@ -3,6 +3,7 @@
     public class Constants
     {
         public const string MessageBoxTitle = "Balas ERP";
+        public const string LoginSuccessfully = "Login Successfully";
         public const string SomethingWentWrong = "Something went wrong. Please try again later.";
         public const string InvalidModel = "Invalid Model. Please try again later.";
         public const string InsertedSuccessfully = "Inserted successfully";

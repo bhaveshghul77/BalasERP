@@ -1,5 +1,6 @@
 ﻿using InfoShark.Helper;
 using InfoShark.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualBasic;
 using Constants = InfoShark.Helper.Constants;
@@ -8,11 +9,19 @@ namespace InfoShark.Services
 {
     public class GenericService : IGenericService
     {
+        private readonly IHttpContextAccessor httpContextAccessor;
+        private ISession session => httpContextAccessor.HttpContext.Session;
+        private LoggedUser loggedUser;
+
         private readonly GenericRepository genericRepository;
 
-        public GenericService(IOptions<Config>? config)
+        public GenericService(IOptions<Config>? config,
+            IHttpContextAccessor httpContextAccessor)
         {
             this.genericRepository = new GenericRepository(config?.Value?.ConnectionString);
+            this.httpContextAccessor = httpContextAccessor;
+
+            loggedUser = SessionHelper.GetJsonObject<LoggedUser>(session, "loggedUser");
         }
 
 
@@ -20,7 +29,7 @@ namespace InfoShark.Services
         {
             try
             {
-                Library.TrySetProperty(obj, "ActionBy", 1);
+                Library.TrySetProperty(obj, "ActionBy", loggedUser.Id);
                 Library.TrySetProperty(obj, "ActionName", action);
 
                 return await this.genericRepository.AddUpdate<T>(obj, module, action);
@@ -35,7 +44,7 @@ namespace InfoShark.Services
         {
             try
             {
-                Library.TrySetProperty(obj, "ActionBy", 1);
+                Library.TrySetProperty(obj, "ActionBy", loggedUser.Id);
                 Library.TrySetProperty(obj, "ActionName", action);
 
                 return await this.genericRepository.Delete<T>(obj, module, action);

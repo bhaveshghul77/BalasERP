@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BalasERP.Web.Controllers
 {
-    public class UserRightController : Controller
+    public class UserRightController : BaseController
     {
         private readonly IGenericService iGenericService;
         private string module = "UserRight";

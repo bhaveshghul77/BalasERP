@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BalasERP.Web.Controllers
 {
-    public class TypeofBackdataController : Controller
+    public class TypeofBackdataController : BaseController
     {
         private readonly IGenericService iGenericService;
         private string module = "TypeofBackdata";

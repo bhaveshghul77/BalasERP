@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using InfoShark.Helper
+@{
+	LoggedUser loggedUser = SessionHelper.GetJsonObject<LoggedUser>(Context.Session, "loggedUser");
+}
+
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
 	<meta charset="utf-8">
@@ -69,15 +74,15 @@
 							<img src="~/assets/images/users/face10.jpg" class="w-32px h-32px rounded-pill" alt="">
 							<span class="status-indicator bg-success"></span>
 						</div>
-						<span class="d-none d-lg-inline-block mx-lg-2">Victoria</span>
+						<span class="d-none d-lg-inline-block mx-lg-2">@loggedUser.FirstName @loggedUser.LastName</span>
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-end">
-						<a href="#" class="dropdown-item">
+						<a href="#" class="dropdown-item" hidden>
 							<i class="ph-user-circle me-2"></i>
 							My profile
 						</a>
-						<a href="#" class="dropdown-item">
+						<a asp-action="logout" asp-controller="login" class="dropdown-item">
 							<i class="ph-sign-out me-2"></i>
 							Logout
 						</a>
