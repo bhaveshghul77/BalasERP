@@ -8,7 +8,7 @@ namespace BalasERP.Domain
         [Key]
         public int Id { get; set; }
         [Required]
-        [DisplayName("Type of Hardware")]
+        [DisplayName("Type of Backdata")]
         public string? TypeofBackdata { get; set; }
     }
 }

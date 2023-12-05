@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "DataInputOptions";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light shadow">
+    <div class="page-header-content d-lg-flex border-top">
+        <div class="d-flex">
+            <div class="breadcrumb py-2">
+                <a href="home" class="breadcrumb-item"><i class="ph-house"></i></a>
+                <span class="breadcrumb-item active">DataInputOptions</span>
+            </div>
+        </div>
+        <div class="collapse d-lg-block ms-lg-auto" id="breadcrumb_elements">
+            <div class="d-lg-flex mb-2 mb-lg-0">
+                <a asp-action="addupdate" asp-controller="datainputoption" class="d-flex align-items-center text-body py-2">
+                    <i class="ph-plus-circle me-2"></i>
+                    Add DataInput Options
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">DataInputOptions</h5>
+        </div>
+
+        <table id="default-ajax-datatable" class="table datatable-html">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Row No</th>
+                    <th>DataInput</th>
+                    <th>OptionName</th>
+                    <th>Millimetre</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<!-- /content area -->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        BindDatatable();
+    });
+
+    function BindDatatable() {
+        var table = $('#default-ajax-datatable').DataTable({
+            destroy: true,
+            serverSide: true,
+            paging: true,
+            searching: true,
+            responsive: true,
+            ajax: {
+                url: "datainputoption/getlistofdata",
+                type: "POST",
+                datatype: "jason",
+                dataSrc: function (json) {
+                    return json.data;
+                }
+            },
+            columns: [
+                { data: "id", name: "id", visible: false },
+                { data: "rowNo", name: "rowNo", class: "text-center", orderable: false },
+                { data: "dataInput", name: "dataInput" },
+                { data: "optionName", name: "optionName" },
+                { data: "millimetre", name: "millimetre" },
+                { data: null, name: "action", class: "text-center", orderable: false },
+            ],
+            columnDefs: [{
+                targets: [5],
+                render: function (data, type, row, meta) {
+                    return '<div class="d-inline-flex">' +
+                        '<div class="dropdown">' +
+                        '<a href="#" class="text-body" data-bs-toggle="dropdown">' +
+                        '<i class="ph-list"></i>' +
+                        '</a>' +
+                        '<div class="dropdown-menu dropdown-menu-end">' +
+                        '<a href="datainputoption/getbyid/' + row['id'] + '" class="dropdown-item"><i class="ph-note-pencil me-2"></i>Edit</a>' +
+                        '<a href="#" onclick="Delete(' + row['id'] + ')" class="dropdown-item"><i class="ph-x-circle me-2"></i>Delete</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                }
+            }
+            ],
+            order: [[0, 'desc']],
+        });
+    };
+
+    async function Delete(datainputOptionId) {
+        var obj = {
+            ['type']: 'Post',
+            ['url']: 'datainputoption/delete',
+            ['data']: {
+                'id': datainputOptionId,
+            },
+            ['processData']: true,
+        }
+
+        var result = await AjaxCall(obj);
+        if (result.status) {
+            BindDatatable();
+        }
+        else {
+            console.log('This was failure');
+        }
+    }
+</script>

@@ -114,6 +114,22 @@
                     return "[dbo].[CURD_DataInputMaster]";
                 }
             }
+            else if (module.Equals("DataInputOption"))
+            {
+                if (action.Equals("GetListofData"))
+                {
+                    return "[dbo].[GetDataInputOptionMasterList]";
+                }
+                else if (action.Equals("GetList"))
+                {
+                    return ""; //[dbo].[GetAllDataInputOptionMasterList]
+                }
+                else
+                {
+                    return "[dbo].[CURD_DataInputOptionMaster]";
+                }
+            }
+
             else if (module.Equals("TypeofBackdata"))
             {
                 if (action.Equals("GetListofData"))
@@ -129,6 +145,8 @@
                     return "[dbo].[CURD_TypeofBackdataMaster]";
                 }
             }
+
+
             else if (module.Equals("TypeofHardware"))
             {
                 if (action.Equals("GetListofData"))

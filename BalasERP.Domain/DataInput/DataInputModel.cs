@@ -8,7 +8,7 @@ namespace BalasERP.Domain
         [Key]
         public int Id { get; set; }
         [Required]
-        [DisplayName("Type of Hardware")]
+        [DisplayName("Data Input")]
         public string? DataInput { get; set; }
     }
 }
