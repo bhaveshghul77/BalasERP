@@ -1,0 +1,195 @@
+﻿@model BalasERP.Domain.BackdataModel
+
+@{
+    ViewData["Title"] = "Add Update Backdata";
+}
+
+<!-- Page header -->
+<div class="page-header page-header-light shadow">
+    <div class="page-header-content d-lg-flex border-top">
+        <div class="d-flex">
+            <div class="breadcrumb py-2">
+                <a asp-action="index" asp-controller="home" class="breadcrumb-item"><i class="ph-house"></i></a>
+                <a asp-action="index" asp-controller="backdata" class="breadcrumb-item">Backdata</a>
+
+                <span class="breadcrumb-item active">Add Update Backdata</span>
+            </div>
+        </div>
+        <div class="collapse d-lg-block ms-lg-auto" id="breadcrumb_elements">
+            <div class="d-lg-flex mb-2 mb-lg-0">
+                <a asp-action="index" asp-controller="backdata" class="d-flex align-items-center text-body py-2">
+                    <i class="ph-arrow-circle-left me-2"></i>
+                    Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page header -->
+<!-- Content area -->
+<div class="content">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">Add Backdata</h5>
+        </div>
+
+        <div class="card-body border-top">
+            <form id="backdata" asp-controller="backdata" asp-action="addupdate" role="form" method="post">
+                <div class="row">
+                    <div class="col-lg-12" hidden>
+                        <div class="mb-3">
+                            <label class="form-label">Id:</label>
+                            <input type="text" class="form-control" placeholder="Id" asp-for="Id">
+                            <span asp-validation-for="Id"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">TypeofBackdata:</label>
+                            <select class="form-control form-control-select2" asp-for="TypeofBackdataId" asp-items="@(new SelectList(ViewBag.TypeofBackdatas,"Id","TypeofBackdata"))">
+                                <option value="">Select Type of Backdata</option>
+                            </select>
+                            <span asp-validation-for="TypeofBackdataId"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">TypeofBackdataOption:</label>
+                            <select class="form-control form-control-select2" asp-for="TypeofBackdataOptionId"></select>
+                            <span asp-validation-for="TypeofBackdataOptionId"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Backdata:</label>
+                            <input type="text" class="form-control" placeholder="Backdata" asp-for="Backdata">
+                            <span asp-validation-for="Backdata"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="mb-3">
+                            <label class="form-label">Description:</label>
+                            <input type="text" class="form-control" placeholder="Description" asp-for="Description">
+                            <span asp-validation-for="Description"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label class="form-label">Sqft Cost:</label>
+                            <input type="text" class="form-control" placeholder="Sqft Cost" asp-for="SqftCost">
+                            <span asp-validation-for="SqftCost"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label class="form-label">Sqmt:</label>
+                            <input type="text" class="form-control" placeholder="Sqmt" asp-for="Sqmt">
+                            <span asp-validation-for="Sqmt"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label class="form-label">Gen Furnitur:</label>
+                            <input type="text" class="form-control" placeholder="Gen Furnitur" asp-for="GenFurnitur">
+                            <span asp-validation-for="GenFurnitur"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label class="form-label">Partitions:</label>
+                            <input type="text" class="form-control" placeholder="Partitions" asp-for="Partitions">
+                            <span asp-validation-for="Partitions"></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="mb-3">
+                            <label class="form-label">BoughtOut:</label>
+                            <input type="text" class="form-control" placeholder="BoughtOut" asp-for="BoughtOut">
+                            <span asp-validation-for="BoughtOut"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">Submit <i class="ph-paper-plane-tilt ms-2"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /content area -->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#backdata").submit(async function (e) {
+            e.preventDefault();
+
+            if ($("#backdata").valid()) {
+
+                var obj = {
+                    ['type']: $(this).attr("method"),
+                    ['url']: $(this).attr("action"),
+                    ['data']: $('#backdata').serialize(),
+                }
+
+                var result = await AjaxCall(obj);
+                if (result.status) {
+                    console.log('This was success');
+                    window.location.href = '@Url.Action("index", "backdata")';
+                }
+                else {
+                    console.log('This was failure');
+                }
+            }
+            else
+                return false;
+        });
+    });
+
+    $('#TypeofBackdataId').on('change', async function () {
+
+        var TypeofBackdataId = $(this).val() == '' ? 0 : $(this).val();
+
+        var obj = {
+            ['type']: 'Post',
+            ['url']: '@Url.Action("gettypeofbackdataoptionbtypeofbackdataid", "backdata")',
+            ['data']: {
+                'typeofBackdataId': parseInt(TypeofBackdataId),
+            },
+            ['processData']: true,
+        }
+
+        var result = await AjaxCall(obj);
+        if (result.status) {
+
+            $('#TypeofBackdataOptionId').find('option').remove().end().append('<option value="">Select Type of Backdata Option</option>').val('');
+
+            $.each(result.list, function (key, value) {
+                $('#TypeofBackdataOptionId').append($("<option></option>").attr("value", value.id).text(value.typeofBackdataOption));
+            });
+
+            $('#TypeofBackdataOptionId').val('@Model.TypeofBackdataOptionId' == '0' ? '' : '@Model.TypeofBackdataOptionId');
+        }
+        else {
+            $('#TypeofBackdataOptionId').find('option').remove().end().append('<option value="">Select Type of Backdata Option</option>').val('');
+            console.log('This was failure');
+        }
+    }).change();
+</script>

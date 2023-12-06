@@ -155,9 +155,32 @@
                 {
                     return "";
                 }
+                else if (action.Equals("GetListWithParam"))
+                {
+                    return "[dbo].[GetTypeofBackdataOptionMasterListByTypeofBackdataId]";
+                }
                 else
                 {
                     return "[dbo].[CURD_TypeofBackdataOptionMaster]";
+                }
+            }
+            else if (module.Equals("Backdata"))
+            {
+                if (action.Equals("GetListofData"))
+                {
+                    return "[dbo].[GetBackDataMasterList]";
+                }
+                else if (action.Equals("GetList"))
+                {
+                    return "";
+                }
+                else if (action.Equals("GetListWithParam"))
+                {
+                    return "[dbo].[GetBackDataMasterListByTypeofBackdataOptionId]";
+                }
+                else
+                {
+                    return "[dbo].[CURD_BackDataMaster]";
                 }
             }
 
@@ -184,11 +207,34 @@
                 }
                 else if (action.Equals("GetList"))
                 {
-                    return "[dbo].[GetAllTypeofHardwareMasterList]";
+                    return "";
+                }
+                else if (action.Equals("GetListWithParam"))
+                {
+                    return "[dbo].[GetTypeofHardwareOptionMasterListByTypeofHardwareId]";
                 }
                 else
                 {
                     return "[dbo].[CURD_TypeofHardwareOptionMaster]";
+                }
+            }
+            else if (module.Equals("Hardware"))
+            {
+                if (action.Equals("GetListofData"))
+                {
+                    return "[dbo].[GetHardwareMasterList]";
+                }
+                else if (action.Equals("GetList"))
+                {
+                    return "";
+                }
+                else if (action.Equals("GetListWithParam"))
+                {
+                    return "[dbo].[GetHardwareMasterListByTypeofHardwareOptionId]";
+                }
+                else
+                {
+                    return "[dbo].[CURD_HardwareMaster]";
                 }
             }
 
